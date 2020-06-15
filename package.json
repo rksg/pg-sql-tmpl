@@ -1,0 +1,23 @@
+{
+  "name": "typed-sql-query",
+  "version": "1.0.0",
+  "description": "typed sql template string helper",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": "git@github.com:rksg/typed-sql-query.git",
+  "author": "shiawuen <shiawuen@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^26.0.0",
+    "@types/pg": "^7.14.3",
+    "jest": "^26.0.1",
+    "ts-jest": "^26.1.0",
+    "typescript": "^3.9.5"
+  },
+  "peerDependencies": {
+    "pg": "*"
+  }
+}
