@@ -19,5 +19,11 @@
   },
   "peerDependencies": {
     "pg": "*"
-  }
+  },
+  "keywords": [
+    "postgres",
+    "pg",
+    "tagged template strings",
+    "typescript"
+  ]
 }
