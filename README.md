@@ -20,7 +20,8 @@ interface IResult {
   name: string
 }
 
-const query = sql`SELECT id, name FROM table where id = ${1};`
+const filter = sql`WHERE id = ${1}`
+const query = sql`SELECT id, name FROM table ${filter};`
 const client = await pgPool.connect()
 const result = await client.query<IResult>(query)
 
