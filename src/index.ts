@@ -10,7 +10,7 @@ function splitQueryConfigText (text: string): string[] {
   return text.split(/\$\d+/gi)
 }
 
-export function sql <V extends any[] = (any | QueryConfig)[]> (
+export function sql <V extends any[] = (any | QueryConfig<any[]>)[]> (
   template: TemplateStringsArray,
   ...values: V
 ): QueryConfig<V> {
@@ -56,4 +56,12 @@ export function sql <V extends any[] = (any | QueryConfig)[]> (
   }, '')
 
   return { text, values: acc.values as V }
+}
+
+sql.raw = function raw (value: any): QueryConfig {
+  return sql([value] as unknown as TemplateStringsArray)
+}
+
+sql.join = function join (configs: QueryConfig[], delimeter: string): QueryConfig {
+  return configs.reduce((a, b): QueryConfig<any> => sql`${a} ${sql.raw(delimeter)} ${b}`)
 }

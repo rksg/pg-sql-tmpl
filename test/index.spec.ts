@@ -31,3 +31,20 @@ describe(sql, () => {
     expect(query.values).toEqual(['value', 'a', 'b', 10, 5])
   })
 })
+
+describe(sql.raw, () => {
+  it('converts value into raw SQL', () => {
+    const query = sql`ORDER BY ${sql.raw('created_at')} desc`
+    expect(query.text).toEqual('ORDER BY created_at desc')
+  })
+})
+
+describe(sql.join, () => {
+  const conditions = [
+    sql`id = ${1}`,
+    sql`id = ${2}`
+  ]
+  const query = sql`SELECT * FROM table WHERE ${sql.join(conditions, 'AND')}`
+  expect(query.text).toEqual('SELECT * FROM table WHERE id = $1 AND id = $2')
+  expect(query.values).toEqual([1, 2])
+})
