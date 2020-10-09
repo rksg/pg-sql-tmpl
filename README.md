@@ -25,6 +25,11 @@ const query = sql`SELECT id, name FROM table ${filter};`
 const client = await pgPool.connect()
 const result = await client.query<IResult>(query)
 
+const query2 = sql`SELECT * FROM table ORDER BY ${sql.raw('created_at')}`
+
+const conditions = [sql`id = ${1}`, sql`id = ${2}`]
+const query3 = sql`SELECT * FROM table WHERE ${sql.join(conditions, 'AND')}`
+
 ```
 
 ### License:
